@@ -38,6 +38,10 @@ div.margen2 {
     text-align: center;
 }
 
+div.margen3 {
+    width: 60%;
+}
+
 header, section {
     width: 960px;
     margin: 0 auto;
@@ -47,7 +51,7 @@ header, section {
 
 img {
     width: 160px;
-    height: 180px;
+    height: 220px;
     float: right;
     border-style: solid;
 }
@@ -59,3 +63,16 @@ ul.datos_lista {
 ul {
     list-style-type: none;
 }
+
+a:link, a:visited {
+    background-color: #7b236c;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(58, 13, 51);
+  }

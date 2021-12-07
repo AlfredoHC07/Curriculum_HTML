@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title><%= title %></title>
+        <title>Curriculum 2.0</title>
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body background="style/img/BT-FONDO.jpg" style="background-size: 100% 100%;">
@@ -155,26 +155,37 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <ul>
-                    <% for(var i = 0; i < items.length; i++) {%>
-                        <li><%= items[i].name %></li>
-                    <% } %>
-                </ul>
-
-                <h3>Agrega un nuevo Contacto</h3>
-
-                <form action="/contactos" method="post">
-                    <input type="text" name="newItem" id="newItem">
-                    <button type="button" name="button">
-                        Agrega un nuevo Contacto
-                    </button>
+                <h1>Ingresar datos de Contato</h1>
+                <p>
+                    Formulario de contactos.
+                </p>
+                <form action="/" method="post">
+                    <label for="nombre"><b>Nombre Completo</b></label><br />
+                    <input type="text" id="nombre" name="nombre" style="width: 40%;"
+                        placeholder="Nombre Completo"
+                        />
+                    <br />
+                    <label for="correo"><b>Correo</b></label><br />
+                    <input type="text" id="correo" name="correo" style="width: 40%;"
+                        placeholder="Correo"
+                        />
+                    <br />
+                    <label for="correo"><b>Comentario</b></label><br />
+                    <textarea id="comentario" name="comentario" style="width: 40%; height: 20%; resize: none;"
+                        placeholder="Comentario"></textarea>
+                    <br />
+                    <button class="button button1" style="margin-top: 10px;" type="submit" name="btnDecirHola">Enviar</button>
                 </form>
-
-                <script>
-                    const textNewItem = document.getElementById('newItem');
-                    textNewItem.focus();
-                </script>
-
+            </div>
+            <div style="text-align: center;">
+                <h1>Contactos</h1>
+                <% for(var i = 0; i < items.length; i++) {%>
+                    <h2>
+                       Nombre: <%= items[i].name %> <br />
+                       Correo: <%= items[i].correo %> <br />
+                       Comentario: <%= items[i].comentario %> <br />
+                    </h2>
+                <% } %>
             </div>     
         </header>                     
     </body>

@@ -2,21 +2,28 @@ const express = require('express');
 const router = express.Router();
 
 const items = [];
+var dataString = ''
 
-router.get('/', (req, res) =>{
+router.get('/', function(req, res, next) {
     res.render('curriculum', {
-       title: 'Proyecto Curriculum 2.0',
-       items: items
-    })
+        items: items
+    });
+
 });
 
-router.post('/contactos', (req, res, next) => {
-    const { newItem } = req.body;
+router.post('/', function(req, res, next) {
+    // console.log(req.body.nombre);
+    // res.render('curriculum', req.body);
+    const {nombre, correo, comentario} = req.body;
+
     items.push({
         id: items.length + 1,
-        name: newItem
+        name: nombre, correo, comentario,
     });
-    res.redirect('/contactos');
+    console.log(items)
+    res.redirect('/');
 });
+
+
 
 module.exports = router;

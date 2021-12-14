@@ -14,11 +14,13 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     // console.log(req.body.nombre);
     // res.render('curriculum', req.body);
+    var d_ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
     const {nombre, correo, comentario} = req.body;
 
     items.push({
         id: items.length + 1,
         name: nombre, correo, comentario,
+        ip: d_ip,
     });
     console.log(items)
     res.redirect('/');

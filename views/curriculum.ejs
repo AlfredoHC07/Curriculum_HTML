@@ -2,6 +2,15 @@
 
 <html>
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNBRG3Z01F"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-VNBRG3Z01F');
+        </script>
         <title>Curriculum 2.0</title>
         <link rel="stylesheet" href="style/style.css">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -160,7 +169,7 @@
                 <p>
                     Formulario de contactos.
                 </p>
-                <form action="/" method="post">
+                <form action="/" method="post" onsubmit="return submitUserForm();">
                     <label for="nombre"><b>Nombre Completo</b></label><br />
                     <input type="text" id="nombre" name="nombre" style="width: 40%;"
                         placeholder="Nombre Completo"
@@ -175,10 +184,28 @@
                     <textarea id="comentario" name="comentario" style="width: 40%; height: 20%; resize: none;"
                         placeholder="Comentario"></textarea>
                     <br />
-                    <div class="g-recaptcha" data-sitekey="6LfSvCoeAAAAAHks035J9wZR7fEv-sT0MdIIUCM0"></div>
-                    <button class="button button1 g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' style="margin-top: 10px;" data-action='submit' name="btnDecirHola">Enviar</button>
+                    <div style="padding-left: 330px;" class="g-recaptcha" data-sitekey="6Lck7yoeAAAAAP-e6mwd2e0wtO764AB4Hji08oWE" data-callback="verifyCaptcha"></div>
+                    <div id="g-recaptcha-error"></div>
+                    <button class="button button1" style="margin-top: 10px;" type='submit' name="btnDecirHola">Enviar</button>
                 </form>
             </div>
+
+            <script>
+                var recaptcha_response = '';
+                function submitUserForm() {
+                    if(recaptcha_response.length == 0) {
+                        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">Error en CAPTCHA.</span>';
+                        return false;
+                    }
+                    return true;
+                }
+                 
+                function verifyCaptcha(token) {
+                    recaptcha_response = token;
+                    document.getElementById('g-recaptcha-error').innerHTML = '';
+                }
+                </script>
+
             <div style="text-align: center;">
                 <h1>Contactos</h1>
                 <% for(var i = 0; i < items.length; i++) {%>

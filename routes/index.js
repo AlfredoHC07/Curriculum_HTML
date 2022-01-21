@@ -12,6 +12,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+        }
     // console.log(req.body.nombre);
     // res.render('curriculum', req.body);
     var d_ip = req.header('x-forwarded-for') || req.connection.remoteAddress;

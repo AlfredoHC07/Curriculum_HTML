@@ -16,33 +16,36 @@ router.post('/', function(req, res, next) {
     function onSubmit(token) {
         document.getElementById("demo-form").submit();
         }
-    // console.log(req.body.nombre);
-    // res.render('curriculum', req.body);
-    var transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        auth: {
-            user: 'hooosg4xpc6ecqrd@ethereal.email',
-            pass: 'MS2XjA8stfxHwYshAy'
-        }
-    });
-
-    var mailOptions = {
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>",
-    }
     var d_ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
     const {nombre, correo, comentario} = req.body;
-
+    var datos = {nombre, correo, comentario};
     items.push({
         id: items.length + 1,
         name: nombre, correo, comentario,
         ip: d_ip,
     });
-    console.log(items)
+    var transporter = nodemailer.createTransport({
+        host: 'smtp.hostinger.com',
+        port: 465,
+        auth: {
+            user: 'pg2_test@arodu.xyz',
+            pass: '123Qwerty'
+        }
+    });
+    var mailOptions = {
+        from: "pg2_test@arodu.xyz",
+        to: "alfredo09hernandez@gmail.com",
+        subject: "Contacto de Curriculum, Carlos Hernandez",
+        text: `Nombre: ${nombre}, Correo: ${correo}, Comentario: ${comentario}`,
+    }
+    transporter.sendMail(mailOptions, (error, info) =>{
+        if(error) {
+            res.status(500).send(error.message);
+        } else {
+            console.log("Email Enviado")
+            res.status(200).jsonp(req.body);
+        }
+    });
     res.redirect('/');
 });
 

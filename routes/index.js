@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
     });
     var mailOptions = {
         from: "pg2_test@arodu.xyz",
-        to: "alfredo09hernandez@gmail.com",
+        to: "alfredo09hernandez@gmail.com, programacion2ais@dispostable.com",
         subject: "Contacto de Curriculum, Carlos Hernandez",
         text: `Nombre: ${nombre}, Correo: ${correo}, Comentario: ${comentario}`,
     }
